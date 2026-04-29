@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TCGShop (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TCGShop (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

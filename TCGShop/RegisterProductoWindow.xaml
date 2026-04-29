@@ -1,0 +1,252 @@
+<Window
+    x:Class="TCGShop.RegisterProductWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:TCGShop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Registrar Producto">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+	<Grid Background="#0A1628">
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!-- Tarjeta central -->
+		<Border Grid.Row="1"
+                Width="560"
+                HorizontalAlignment="Center"
+                CornerRadius="12"
+                Background="#0F1E3A"
+                BorderBrush="#E30118"
+                BorderThickness="1"
+                Margin="0,32,0,32">
+
+			<StackPanel>
+
+				<!-- ── Header ── -->
+				<Border CornerRadius="12,12,0,0"
+                        Padding="32,20,32,16"
+                        Background="#1E3160">
+					<StackPanel HorizontalAlignment="Center" Spacing="4">
+
+						<StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Spacing="12">
+							<Image Source="/Assets/logo-redbull.png"
+                                   Width="200" Height="200"
+                                   VerticalAlignment="Center" />
+							<StackPanel VerticalAlignment="Center" Spacing="2">
+								<TextBlock Text="ORACLE"
+                                           FontSize="18" FontWeight="Bold"
+                                           Foreground="White" CharacterSpacing="80" />
+								<TextBlock Text="RED BULL"
+                                           FontSize="18" FontWeight="Bold"
+                                           Foreground="#E30118" CharacterSpacing="80" />
+								<TextBlock Text="RACING"
+                                           FontSize="11" FontWeight="SemiBold"
+                                           Foreground="#FFC906" CharacterSpacing="120" />
+							</StackPanel>
+						</StackPanel>
+
+						<Rectangle Height="2" Fill="#E30118" Opacity="0.8" Margin="0,8,0,0" />
+
+						<TextBlock Text="REGISTRAR PRODUCTO"
+                                   FontSize="10"
+                                   Foreground="#A8C4E0"
+                                   HorizontalAlignment="Center"
+                                   CharacterSpacing="150"
+                                   Margin="0,4,0,0" />
+					</StackPanel>
+				</Border>
+
+				<!-- ── Cuerpo del formulario ── -->
+				<ScrollViewer MaxHeight="560" VerticalScrollBarVisibility="Auto">
+					<StackPanel Padding="32,24,32,28" Spacing="14">
+
+						<TextBlock Text="Completa los datos del nuevo producto"
+                                   FontSize="13"
+                                   Foreground="#A8C4E0"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,4" />
+
+						<!-- Nombre -->
+						<StackPanel Spacing="5">
+							<TextBlock Text="NOMBRE *"
+                                       FontSize="11" FontWeight="SemiBold"
+                                       Foreground="#FFC906" CharacterSpacing="80" />
+							<TextBox x:Name="NameTextBox"
+                                     PlaceholderText="nombre del producto"
+                                     Foreground="White"
+                                     Background="#162040"
+                                     BorderBrush="#E30118"
+                                     BorderThickness="1"
+                                     CornerRadius="6"
+                                     Padding="12,9" />
+						</StackPanel>
+
+						<!-- Descripción -->
+						<StackPanel Spacing="5">
+							<TextBlock Text="DESCRIPCIÓN"
+                                       FontSize="11" FontWeight="SemiBold"
+                                       Foreground="#FFC906" CharacterSpacing="80" />
+							<TextBox x:Name="DescriptionTextBox"
+                                     PlaceholderText="descripción opcional…"
+                                     AcceptsReturn="True"
+                                     Height="90"
+                                     TextWrapping="Wrap"
+                                     Foreground="White"
+                                     Background="#162040"
+                                     BorderBrush="#E30118"
+                                     BorderThickness="1"
+                                     CornerRadius="6"
+                                     Padding="12,9" />
+						</StackPanel>
+
+						<!-- Marca -->
+						<StackPanel Spacing="5">
+							<TextBlock Text="MARCA *"
+                                       FontSize="11" FontWeight="SemiBold"
+                                       Foreground="#FFC906" CharacterSpacing="80" />
+							<TextBox x:Name="BrandTextBox"
+                                     PlaceholderText="marca del producto"
+                                     Foreground="White"
+                                     Background="#162040"
+                                     BorderBrush="#E30118"
+                                     BorderThickness="1"
+                                     CornerRadius="6"
+                                     Padding="12,9" />
+						</StackPanel>
+
+						<!-- Precio y Existencias en la misma fila -->
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="16" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<StackPanel Grid.Column="0" Spacing="5">
+								<TextBlock Text="PRECIO * (ej. 12.50)"
+                                           FontSize="11" FontWeight="SemiBold"
+                                           Foreground="#FFC906" CharacterSpacing="80" />
+								<TextBox x:Name="PriceTextBox"
+                                         PlaceholderText="0.00"
+                                         Foreground="White"
+                                         Background="#162040"
+                                         BorderBrush="#E30118"
+                                         BorderThickness="1"
+                                         CornerRadius="6"
+                                         Padding="12,9" />
+							</StackPanel>
+
+							<StackPanel Grid.Column="2" Spacing="5">
+								<TextBlock Text="EXISTENCIAS *"
+                                           FontSize="11" FontWeight="SemiBold"
+                                           Foreground="#FFC906" CharacterSpacing="80" />
+								<TextBox x:Name="StockTextBox"
+                                         PlaceholderText="0"
+                                         Foreground="White"
+                                         Background="#162040"
+                                         BorderBrush="#E30118"
+                                         BorderThickness="1"
+                                         CornerRadius="6"
+                                         Padding="12,9" />
+							</StackPanel>
+						</Grid>
+
+						<!-- Fecha de lanzamiento -->
+						<StackPanel Spacing="5">
+							<TextBlock Text="FECHA DE LANZAMIENTO"
+                                       FontSize="11" FontWeight="SemiBold"
+                                       Foreground="#FFC906" CharacterSpacing="80" />
+							<DatePicker x:Name="ReleaseDatePicker"
+                                        HorizontalAlignment="Stretch"
+                                        Background="#162040"
+                                        Foreground="White" />
+						</StackPanel>
+
+						<!-- Imagen -->
+						<StackPanel Spacing="5">
+							<TextBlock Text="IMAGEN"
+                                       FontSize="11" FontWeight="SemiBold"
+                                       Foreground="#FFC906" CharacterSpacing="80" />
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="10" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+
+								<TextBox Grid.Column="0"
+                                         x:Name="ImagePathTextBox"
+                                         IsReadOnly="True"
+                                         PlaceholderText="ninguna imagen seleccionada"
+                                         Foreground="White"
+                                         Background="#162040"
+                                         BorderBrush="#E30118"
+                                         BorderThickness="1"
+                                         CornerRadius="6"
+                                         Padding="12,9" />
+
+								<Button Grid.Column="2"
+                                        x:Name="BrowseButton"
+                                        Content="Seleccionar…"
+                                        Click="Browse_Click"
+                                        Background="Transparent"
+                                        BorderBrush="#FFC906"
+                                        BorderThickness="1"
+                                        Foreground="#FFC906"
+                                        CornerRadius="6"
+                                        Padding="14,9" />
+							</Grid>
+						</StackPanel>
+
+						<!-- Estado -->
+						<TextBlock x:Name="StatusTextBlock"
+                                   Foreground="#FF6B6B"
+                                   TextWrapping="Wrap"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center" />
+
+						<!-- Botón guardar -->
+						<Button x:Name="SaveButton"
+                                Content="Registrar Producto"
+                                HorizontalAlignment="Stretch"
+                                Height="48"
+                                FontSize="15"
+                                Click="SaveBtn_Click"
+                                Background="#E30118"
+                                Foreground="White"
+                                BorderThickness="0"
+                                CornerRadius="6"
+                                Margin="0,6,0,0" />
+
+					</StackPanel>
+				</ScrollViewer>
+
+				<!-- Franja decorativa roja -->
+				<Rectangle Height="3" Fill="#E30118" />
+
+				<!-- Footer -->
+				<Border Padding="0,10"
+                        CornerRadius="0,0,12,12"
+                        Background="#0F1E3A">
+					<TextBlock Text="© 2025 Red Bull Racing · Todos los derechos reservados"
+                               FontSize="11"
+                               Foreground="#4A6080"
+                               HorizontalAlignment="Center" />
+				</Border>
+
+			</StackPanel>
+		</Border>
+	</Grid>
+</Window>
