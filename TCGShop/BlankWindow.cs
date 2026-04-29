@@ -57,7 +57,7 @@ namespace TCGShop
 
             var brandStack = new StackPanel { VerticalAlignment = VerticalAlignment.Center, Spacing = 2 };
             brandStack.Children.Add(new TextBlock { Text = "ORACLE", FontSize = 18, FontWeight = Microsoft.UI.Text.FontWeights.Bold, Foreground = new SolidColorBrush(Colors.White), CharacterSpacing = 80 });
-            brandStack.Children.Add(new TextBlock { Text = "RED BULL", FontSize = 18, FontWeight = Microsoft.UI.Text.FontWeights.Bold, Foreground = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 227, 1, 24)), CharacterSpacing = 80 });
+            brandStack.Children.Add(new TextBlock { Text = "RED BULL", FontSize = 22, FontWeight = Microsoft.UI.Text.FontWeights.Bold, Foreground = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 227, 1, 24)), CharacterSpacing = 80 });
             brandStack.Children.Add(new TextBlock { Text = "RACING", FontSize = 11, FontWeight = Microsoft.UI.Text.FontWeights.SemiBold, Foreground = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 201, 6)), CharacterSpacing = 120 });
 
             titleRow.Children.Add(logo);
