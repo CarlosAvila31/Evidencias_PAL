@@ -49,7 +49,7 @@
                                            FontSize="18" FontWeight="Bold"
                                            Foreground="White" CharacterSpacing="80" />
 								<TextBlock Text="RED BULL"
-                                           FontSize="18" FontWeight="Bold"
+                                           FontSize="24" FontWeight="Bold"
                                            Foreground="#E30118" CharacterSpacing="80" />
 								<TextBlock Text="RACING"
                                            FontSize="11" FontWeight="SemiBold"
