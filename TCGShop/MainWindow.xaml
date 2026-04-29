@@ -59,7 +59,7 @@
                                            Foreground="White"
                                            CharacterSpacing="80" />
                                 <TextBlock Text="RED BULL"
-                                           FontSize="22"
+                                           FontSize="24"
                                            FontWeight="Bold"
                                            Foreground="#E30118"
                                            CharacterSpacing="80" />
