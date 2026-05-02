@@ -98,7 +98,11 @@ namespace TCGShop
 
             // Botón Ver Productos  — estilo outline amarillo
             var verProductos = CreateMenuButton("  Ver Productos", isPrimary: false);
-            verProductos.Click += async (s, e) => await ShowMessageAsync(rootGrid, "Ver Productos seleccionado");
+            verProductos.Click += async (s, e) =>
+            {
+               var win = new ViewProductsWindow();
+                win.Activate();
+            };
 
             // Botón Registrar Producto — estilo sólido rojo (acción principal)
             var registrarProductos = CreateMenuButton("  Registrar Producto", isPrimary: true);
@@ -108,18 +112,11 @@ namespace TCGShop
                 win.Activate();
             };
 
-            // Botón Registrar Compra — outline amarillo
-            var registrarCompra = CreateMenuButton("  Registrar Compra", isPrimary: false);
-            registrarCompra.Click += async (s, e) => await ShowMessageAsync(rootGrid, "Registrar Compra seleccionado");
-
-            // Botón Dar de alta Cliente — outline amarillo
-            var altaCliente = CreateMenuButton("  Dar de alta Cliente", isPrimary: false);
-            altaCliente.Click += async (s, e) => await ShowMessageAsync(rootGrid, "Dar de alta Cliente seleccionado");
+    
 
             body.Children.Add(verProductos);
             body.Children.Add(registrarProductos);
-            body.Children.Add(registrarCompra);
-            body.Children.Add(altaCliente);
+        
 
             cardStack.Children.Add(body);
 

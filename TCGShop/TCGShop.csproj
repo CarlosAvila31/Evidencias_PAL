@@ -16,6 +16,9 @@
   <ItemGroup>
     <None Remove="RegisterProductoWindow.xaml" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Productstyles.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -47,7 +50,14 @@
     <Page Update="RegisterProductoWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+	  <Page Update="Productstyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+	<Page Update="ViewProductsWindow.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+	</Page>
   </ItemGroup>
+    
 
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
@@ -70,5 +80,13 @@
       <CopyToOutputDirectory></CopyToOutputDirectory>
       <Generator>MSBuild:Compile</Generator>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Productstyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ViewProductsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>

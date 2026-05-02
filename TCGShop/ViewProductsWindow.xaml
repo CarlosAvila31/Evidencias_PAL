@@ -1,0 +1,296 @@
+<Window
+    x:Class="TCGShop.ViewProductsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TCGShop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    Title="TCGShop — Ver Productos">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid Background="#0A1628">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Header -->
+            <RowDefinition Height="Auto" />
+            <!-- Barra de búsqueda -->
+            <RowDefinition Height="*"    />
+            <!-- Tabla de productos -->
+            <RowDefinition Height="Auto" />
+            <!-- Footer -->
+        </Grid.RowDefinitions>
+
+        <!-- ══ HEADER ══════════════════════════════════════════════════ -->
+        <StackPanel Grid.Row="0">
+            <Border Background="#1E3160" Padding="32,16,32,16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*"    />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Logo + título -->
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="12"
+                                VerticalAlignment="Center">
+                        <Image Source="/Assets/logo-redbull.png"
+                               Width="44" Height="44"
+                               VerticalAlignment="Center" />
+                        <StackPanel VerticalAlignment="Center" Spacing="2">
+                            <TextBlock Text="ORACLE  RED BULL RACING"
+                                       FontSize="14" FontWeight="Bold"
+                                       Foreground="White" CharacterSpacing="60" />
+                            <TextBlock Text="CATÁLOGO DE PRODUCTOS"
+                                       FontSize="10" Foreground="#FFC906"
+                                       CharacterSpacing="120" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Contador de productos -->
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center"
+                                HorizontalAlignment="Right" Spacing="2">
+                        <TextBlock x:Name="ProductCountLabel"
+                                   Text="0 productos"
+                                   FontSize="22" FontWeight="Bold"
+                                   Foreground="#FFC906"
+                                   HorizontalAlignment="Right" />
+                        <TextBlock Text="REGISTRADOS"
+                                   FontSize="9" Foreground="#A8C4E0"
+                                   CharacterSpacing="100"
+                                   HorizontalAlignment="Right" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Franja roja -->
+            <Border Height="3" Background="#E30118" />
+        </StackPanel>
+
+        <!-- ══ BARRA DE BÚSQUEDA ════════════════════════════════════════ -->
+        <Border Grid.Row="1"
+                Background="#0F1E3A"
+                Padding="32,14,32,14"
+                BorderBrush="#E30118"
+                BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"    />
+                    <ColumnDefinition Width="16"   />
+                    <ColumnDefinition Width="160"  />
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+                         x:Name="SearchBox"
+                         PlaceholderText="🔍  Buscar por nombre, marca o descripción…"
+                         Foreground="White"
+                         Background="#162040"
+                         BorderBrush="#E30118"
+                         BorderThickness="1"
+                         CornerRadius="6"
+                         Padding="12,9"
+                         TextChanged="SearchBox_TextChanged" />
+
+                <ComboBox Grid.Column="2"
+                          x:Name="SortCombo"
+                          Background="#162040"
+                          Foreground="White"
+                          BorderBrush="#E30118"
+                          BorderThickness="1"
+                          CornerRadius="6"
+                          HorizontalAlignment="Stretch"
+                          SelectionChanged="SortCombo_SelectionChanged">
+                    <ComboBoxItem Content="Ordenar: ID ↑"      IsSelected="True" />
+                    <ComboBoxItem Content="Ordenar: Nombre A-Z" />
+                    <ComboBoxItem Content="Ordenar: Precio ↑"  />
+                    <ComboBoxItem Content="Ordenar: Precio ↓"  />
+                    <ComboBoxItem Content="Ordenar: Stock ↓"   />
+                </ComboBox>
+            </Grid>
+        </Border>
+
+        <!-- ══ TABLA DE PRODUCTOS ═══════════════════════════════════════ -->
+        <Grid Grid.Row="2" Margin="32,16,32,16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <!-- Cabecera de columnas -->
+                <RowDefinition Height="*"    />
+                <!-- Filas + estado vacío  -->
+            </Grid.RowDefinitions>
+
+            <!-- Cabecera de columnas -->
+            <Border Grid.Row="0"
+                    Background="#162050"
+                    CornerRadius="8,8,0,0"
+                    Padding="12,10,12,10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"  />
+                        <!-- # -->
+                        <ColumnDefinition Width="72"  />
+                        <!-- Img -->
+                        <ColumnDefinition Width="*"   />
+                        <!-- Nombre -->
+                        <ColumnDefinition Width="120" />
+                        <!-- Marca -->
+                        <ColumnDefinition Width="90"  />
+                        <!-- Precio -->
+                        <ColumnDefinition Width="90"  />
+                        <!-- Stock -->
+                        <ColumnDefinition Width="110" />
+                        <!-- Fecha -->
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="#"            Style="{StaticResource HeaderCellStyle}" />
+                    <TextBlock Grid.Column="1" Text="IMAGEN"       Style="{StaticResource HeaderCellStyle}" />
+                    <TextBlock Grid.Column="2" Text="NOMBRE"       Style="{StaticResource HeaderCellStyle}" />
+                    <TextBlock Grid.Column="3" Text="MARCA"        Style="{StaticResource HeaderCellStyle}" />
+                    <TextBlock Grid.Column="4" Text="PRECIO"       Style="{StaticResource HeaderCellStyle}" />
+                    <TextBlock Grid.Column="5" Text="EXISTENCIAS"  Style="{StaticResource HeaderCellStyle}" />
+                    <TextBlock Grid.Column="6" Text="LANZAMIENTO"  Style="{StaticResource HeaderCellStyle}" />
+                </Grid>
+            </Border>
+
+            <!-- Lista de productos / estado vacío -->
+            <Grid Grid.Row="1">
+
+                <!-- Lista -->
+                <ListView x:Name="ProductsListView"
+                          Background="Transparent"
+                          SelectionMode="None"
+                          IsItemClickEnabled="False">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Padding"                    Value="0" />
+                            <Setter Property="Margin"                     Value="0" />
+                            <Setter Property="Background"                 Value="Transparent" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:ProductViewModel">
+                            <Border Padding="12,10,12,10"
+                                    Background="{x:Bind RowBackground}"
+                                    BorderBrush="#28E30118"
+                                    BorderThickness="0,0,0,1">
+                                <Grid VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"  />
+                                        <ColumnDefinition Width="72"  />
+                                        <ColumnDefinition Width="*"   />
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="90"  />
+                                        <ColumnDefinition Width="90"  />
+                                        <ColumnDefinition Width="110" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- ID -->
+                                    <TextBlock Grid.Column="0"
+                                               Text="{x:Bind Id}"
+                                               Foreground="#A8C4E0"
+                                               FontSize="13"
+                                               VerticalAlignment="Center" />
+
+                                    <!-- Imagen -->
+                                    <Border Grid.Column="1"
+                                            Width="56" Height="56"
+                                            CornerRadius="6"
+                                            Background="#0A1628"
+                                            BorderBrush="#50E30118"
+                                            BorderThickness="1"
+                                            VerticalAlignment="Center">
+                                        <Image Source="{x:Bind ImageSource}"
+                                               Stretch="UniformToFill" />
+                                    </Border>
+
+                                    <!-- Nombre + Descripción -->
+                                    <StackPanel Grid.Column="2"
+                                                Spacing="3"
+                                                VerticalAlignment="Center"
+                                                Margin="8,0,8,0">
+                                        <TextBlock Text="{x:Bind Nombre}"
+                                                   FontSize="14" FontWeight="SemiBold"
+                                                   Foreground="White"
+                                                   TextWrapping="Wrap" />
+                                        <TextBlock Text="{x:Bind Descripcion}"
+                                                   FontSize="11"
+                                                   Foreground="#A8C4E0"
+                                                   TextWrapping="Wrap"
+                                                   MaxLines="2"
+                                                   Visibility="{x:Bind DescripcionVisible}" />
+                                    </StackPanel>
+
+                                    <!-- Marca (badge) -->
+                                    <Border Grid.Column="3"
+                                            Background="#3CE30118"
+                                            BorderBrush="#78E30118"
+                                            BorderThickness="1"
+                                            CornerRadius="4"
+                                            Padding="8,4,8,4"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center">
+                                        <TextBlock Text="{x:Bind Marca}"
+                                                   FontSize="12"
+                                                   Foreground="White" />
+                                    </Border>
+
+                                    <!-- Precio -->
+                                    <TextBlock Grid.Column="4"
+                                               Text="{x:Bind PrecioStr}"
+                                               FontSize="14" FontWeight="Bold"
+                                               Foreground="#FFC906"
+                                               VerticalAlignment="Center" />
+
+                                    <!-- Existencias -->
+                                    <TextBlock Grid.Column="5"
+                                               Text="{x:Bind Existencias}"
+                                               FontSize="14" FontWeight="Bold"
+                                               Foreground="{x:Bind StockColor}"
+                                               VerticalAlignment="Center"
+                                               Padding="30,0,0,0"/>
+
+                                    <!-- Fecha -->
+                                    <TextBlock Grid.Column="6"
+                                               Text="{x:Bind FechaStr}"
+                                               FontSize="12"
+                                               Foreground="#A8C4E0"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!-- Estado: sin resultados -->
+                <StackPanel x:Name="EmptyState"
+                            Visibility="Collapsed"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="12">
+                    <TextBlock Text="📦"
+                               FontSize="48"
+                               HorizontalAlignment="Center" />
+                    <TextBlock x:Name="EmptyLabel"
+                               Text="No hay productos registrados aún."
+                               FontSize="16"
+                               Foreground="#A8C4E0"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+        <Border Grid.Row="3"
+                Background="#0F1E3A"
+                Padding="0,10,0,10">
+            <TextBlock Text="© 2025 Red Bull Racing · Todos los derechos reservados"
+                       FontSize="11" Foreground="#4A6080"
+                       HorizontalAlignment="Center" />
+        </Border>
+
+    </Grid>
+</Window>
